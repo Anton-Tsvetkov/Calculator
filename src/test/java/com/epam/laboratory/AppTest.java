@@ -14,8 +14,9 @@ public class AppTest {
     private static final List<Double> numbers = Arrays.asList(
             2.0, 3.0, 45.3, 90.0, 20.0, 8.0, 20.0, 4.0
     );
-    private static final List<Character> arithmeticOperations = Arrays.asList(
-            '+', '*', '*', '+', '-', '/', 's'
+
+    private static final List<String> arithmeticOperations = Arrays.asList(
+            "+", "*", "*", "+", "-", "/", "-sqrt"
     );
     private static final double answer = 12_250.6;
 
@@ -23,13 +24,13 @@ public class AppTest {
 
     @BeforeAll
     @Test
-    public static void testExtractionNumbersFromMathExpression() {
+    public void testExtractionNumbersFromMathExpression() {
         Assert.assertEquals(calculator.extractionNumbersFromMathExpression(initialString), numbers);
     }
 
     @BeforeAll
     @Test
-    public static void testExtractionArithmeticOperationsFromMathExpression() {
+    public void testExtractionArithmeticOperationsFromMathExpression() {
         Assert.assertEquals(calculator.extractionArithmeticOperationsFromMathExpression(initialString), arithmeticOperations);
     }
 
