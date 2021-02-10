@@ -11,20 +11,20 @@ import java.util.List;
 
 public class CalculatorTest {
 
-    public String initialString = "2 + 3 * 45.3 * 90 + 20 - 8/20 - sqrt4";
-    public String initialStringWithNegativeFirstNumber = "- 8/20 + 2 + 90 * 45.3 * 3 - sqrt4  + 20";
-    public List<BigDecimal> numbers = Arrays.asList(
+    private static final String initialString = "2 + 3 * 45.3 * 90 + 20 - 8/20 - sqrt4";
+    private static final  String initialStringWithNegativeFirstNumber = "- 8/20 + 2 + 90 * 45.3 * 3 - sqrt4  + 20";
+    private static final  List<BigDecimal> numbers = Arrays.asList(
             new BigDecimal("2"), new BigDecimal("3"),
             new BigDecimal("45.3"), new BigDecimal("90"),
             new BigDecimal("20"), new BigDecimal("8"),
             new BigDecimal("20"), new BigDecimal("4")
     );
 
-    public List<String> arithmeticOperations = Arrays.asList(
+    private static final  List<String> arithmeticOperations = Arrays.asList(
             "+", "*", "*", "+", "-", "/", "-sqrt"
     );
-    private final BigDecimal answer = new BigDecimal("12250.6");
-    private final Calculator calculator = new Calculator();
+    private static final BigDecimal answer = new BigDecimal("12250.6");
+    private static final Calculator calculator = new Calculator();
 
     @BeforeAll
     @Test
