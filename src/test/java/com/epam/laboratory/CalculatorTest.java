@@ -44,7 +44,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testExtractionArithmeticOperationsFromMathExpression() throws IncorrectOperationEntryException {
+    public void testExtractionArithmeticOperationsFromMathExpression() {
         Assert.assertEquals(
                 PARSER.extractionEverythingExceptNumbers(MATH_EXPRESSION),
                 ARITHMETIC_OPERATIONS_FROM_MATH_EXPRESSION);
@@ -146,13 +146,13 @@ public class CalculatorTest {
         }
     }
 
-//    @Test
-//    public void testIncorrectOperationEntryException() {
-//        try {
-//            CALCULATOR.extractionArithmeticOperationsFromMathExpression(MATH_EXPRESSION_WITH_INCORRECT_OPERATION_ENTRY);
-//        } catch (IncorrectOperationEntryException exception) {
-//            Assert.assertThat(exception.getMessage(), is("Unsupported arithmetic operation"));
-//        }
-//    }
+    @Test
+    public void testIncorrectOperationEntryException() {
+        try {
+            PARSER.extractionEverythingExceptNumbers(MATH_EXPRESSION_WITH_INCORRECT_OPERATION_ENTRY);
+        } catch (IncorrectOperationEntryException exception) {
+            Assert.assertThat(exception.getMessage(), is("Incorrect arithmetic operation"));
+        }
+    }
 
 }
