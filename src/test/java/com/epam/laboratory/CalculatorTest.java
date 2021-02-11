@@ -16,6 +16,7 @@ public class CalculatorTest {
     private static final String MATH_EXPRESSION = "2 + 3 * 45.3 * 90 + 20 - 8/20 - sqrt4";
     private static final String MATH_EXPRESSION_WITH_NEGATIVE_FIRST_NUMBER = "- 8/20 + 2 + 90 * 45.3 * 3 - sqrt4  + 20";
     private static final String MATH_EXPRESSION_WITH_INCORRECT_OPERATION_ENTRY = "2 + 3 ** 45.3 * 90 + 20 -- 8/20 - st4";
+    private static final String MATH_EXPRESSION_WITH_DIVISION_BY_ZERO_EXCEPTION = "8/0 + 2 + 90 * 45.3 * 32/0";
     private static final List<BigDecimal> NUMBERS_FROM_MATH_EXPRESSION = Arrays.asList(
             new BigDecimal("2"), new BigDecimal("3"),
             new BigDecimal("45.3"), new BigDecimal("90"),
@@ -44,7 +45,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testExtractionArithmeticOperationsFromMathExpression() throws IncorrectOperationEntryException {
+    public void testExtractionArithmeticOperationsFromMathExpression() {
         Assert.assertEquals(
                 PARSER.extractionEverythingExceptNumbers(MATH_EXPRESSION),
                 ARITHMETIC_OPERATIONS_FROM_MATH_EXPRESSION);
@@ -146,13 +147,31 @@ public class CalculatorTest {
         }
     }
 
-//    @Test
-//    public void testIncorrectOperationEntryException() {
-//        try {
-//            CALCULATOR.extractionArithmeticOperationsFromMathExpression(MATH_EXPRESSION_WITH_INCORRECT_OPERATION_ENTRY);
-//        } catch (IncorrectOperationEntryException exception) {
-//            Assert.assertThat(exception.getMessage(), is("Unsupported arithmetic operation"));
-//        }
-//    }
+    @Test
+    public void testMathExpressionWithDivisionByZeroException() {
+        try {
+            CALCULATOR.calculateMathExpression(MATH_EXPRESSION_WITH_DIVISION_BY_ZERO_EXCEPTION);
+        } catch (DivisionByZeroException exception) {
+            Assert.assertThat(exception.getMessage(), is("Division by zero"));
+        }
+    }
+
+    @Test
+    public void testIncorrectOperationEntryException() {
+        try {
+            PARSER.extractionEverythingExceptNumbers(MATH_EXPRESSION_WITH_INCORRECT_OPERATION_ENTRY);
+        } catch (IncorrectOperationEntryException exception) {
+            Assert.assertThat(exception.getMessage(), is("Incorrect arithmetic operation"));
+        }
+    }
+
+    @Test
+    public void testMathExpressionWithIncorrectOperationEntryException() {
+        try {
+            CALCULATOR.calculateMathExpression(MATH_EXPRESSION_WITH_INCORRECT_OPERATION_ENTRY);
+        } catch (IncorrectOperationEntryException exception) {
+            Assert.assertThat(exception.getMessage(), is("Incorrect arithmetic operation"));
+        }
+    }
 
 }
