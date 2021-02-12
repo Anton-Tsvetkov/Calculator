@@ -52,14 +52,14 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testCalculateMathExpression() {
+    public void testCalculateMathExpression() throws IncorrectOperationEntryException {
         Assert.assertEquals(
                 CALCULATOR.calculateMathExpression(MATH_EXPRESSION).doubleValue(),
                 SOLUTION_MATH_EXPRESSION.doubleValue(), 0.0);
     }
 
     @Test
-    public void testCalculateMathExpressionWithNegativeFirstNumber() {
+    public void testCalculateMathExpressionWithNegativeFirstNumber() throws IncorrectOperationEntryException {
         Assert.assertEquals(
                 CALCULATOR.calculateMathExpression(MATH_EXPRESSION_WITH_NEGATIVE_FIRST_NUMBER).doubleValue(),
                 SOLUTION_MATH_EXPRESSION.doubleValue(), 0.0);
@@ -153,15 +153,8 @@ public class CalculatorTest {
             CALCULATOR.calculateMathExpression(MATH_EXPRESSION_WITH_DIVISION_BY_ZERO_EXCEPTION);
         } catch (DivisionByZeroException exception) {
             Assert.assertThat(exception.getMessage(), is("Division by zero"));
-        }
-    }
-
-    @Test
-    public void testIncorrectOperationEntryException() {
-        try {
-            PARSER.extractionEverythingExceptNumbers(MATH_EXPRESSION_WITH_INCORRECT_OPERATION_ENTRY);
-        } catch (IncorrectOperationEntryException exception) {
-            Assert.assertThat(exception.getMessage(), is("Incorrect arithmetic operation"));
+        } catch (IncorrectOperationEntryException e) {
+            System.out.println(e.getMessage());
         }
     }
 
