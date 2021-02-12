@@ -7,17 +7,13 @@ import java.util.List;
 
 public class Parser {
 
-    //             if (operation.length() != 1 && !operation.contains("sqrt")) {
-    //                throw new IncorrectOperationEntryException("Incorrect arithmetic operation");
-    //            }
-
-
-    public String deleteSpaces(String str){
+    private static String deleteSpaces(String str) {
         return str.replaceAll(" ", "");
     }
 
-    public List<BigDecimal> extractionNumbers(String str){
+    public List<BigDecimal> extractionNumbers(String str) {
 
+        str = deleteSpaces(str);
         String[] numbersArrayAsString = str.split("[^0-9.]");
 
         List<String> numbersListAsString = new ArrayList<>(Arrays.asList(numbersArrayAsString));
@@ -29,12 +25,12 @@ public class Parser {
         }
 
         return numbersListAsBigDecimal;
-
     }
 
 
-    public List<String> extractionEverythingExceptNumbers(String str){
+    public List<String> extractionEverythingExceptNumbers(String str) {
 
+        str = deleteSpaces(str);
         String[] operationsArray = str.split("[0-9.]");
 
         List<String> operationsList = new ArrayList<>(Arrays.asList(operationsArray));
@@ -42,7 +38,6 @@ public class Parser {
 
         return operationsList;
     }
-
 
 
 }
